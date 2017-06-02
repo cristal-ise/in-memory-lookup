@@ -25,16 +25,19 @@ import org.cristalise.kernel.common.ObjectNotFoundException
 import org.cristalise.kernel.process.auth.Authenticator
 import org.cristalise.kernel.utils.Logger
 
+import groovy.transform.CompileStatic
+
+@CompileStatic
 class InMemoryAuthManager implements Authenticator {
 
     @Override
-    public boolean authenticate(String agentName, String password, String resource) throws InvalidDataException, ObjectNotFoundException {
+    public String authenticate(String agentName, String password, String resource) {
         Logger.warning("InMemoryAuthManager.authenticate() - name: $agentName, resource: $resource - This implemetation ALWAYS returns true!");
-        return true;
+        return "token";
     }
 
     @Override
-    public boolean authenticate(String resource) throws InvalidDataException, ObjectNotFoundException {
+    public boolean authenticate(String resource) {
         Logger.warning("InMemoryAuthManager.authenticate() - resource: $resource - This implemetation ALWAYS returns true!");
         return true;
     }
